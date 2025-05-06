@@ -37,8 +37,9 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable) //Se desabilita porque se esta usando JWT                                                           //Permite all en autenticacion, pero otro recurso debe ser autenticado
-                .authorizeHttpRequests(authorize -> authorize.requestMatchers(antMatcher("/autenticacion/**"),antMatcher("/proyecto/**"),antMatcher("/empleado/**")).permitAll().anyRequest().authenticated()) //Esto es request autorization
-                .sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS)) //Significa que no guarda nada
+                .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers(antMatcher("/**")).permitAll() // Permite todos los endpoints
+                        .anyRequest().permitAll()).sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS)) //Significa que no guarda nada
                 .authenticationProvider(authenticationProvider())
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class); //Añadir un filtro...
 

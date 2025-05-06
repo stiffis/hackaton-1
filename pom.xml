@@ -107,8 +107,9 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
+		<!--Aqui terminan las dependencias-->
 	</dependencies>
-		<!-- Aqui terminan las dependencias-->
+
 
 	<build>
 		<plugins>
